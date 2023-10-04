@@ -11,8 +11,10 @@ RUN apt-get install -y python3-cbor
 
 # Install rvizweb.
 WORKDIR /rvizweb_ws
-ARG rvizweb_branch=master
-RUN git clone https://github.com/osrf/rvizweb/ src/rvizweb -b ${rvizweb_branch}
+#ARG rvizweb_branch=master
+#RUN git clone https://github.com/osrf/rvizweb/ src/rvizweb -b ${rvizweb_branch}
+ARG rvizweb_branch=noetic
+RUN git clone https://github.com/mjpatell/rvizweb/ src/rvizweb -b ${rvizweb_branch}
 RUN rosdep update
 RUN rosdep install --from-paths src --ignore-src -r -y
 RUN . /opt/ros/noetic/setup.sh && catkin_make install
